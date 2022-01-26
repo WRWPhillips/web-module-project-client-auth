@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 // stub imports
 import axiosAuthStub from '../utils/axiosAuthStub'
 
-const Logout = () => {
+export default function LogOut(){
   const { push } = useHistory();
 
   useEffect(() => {
@@ -13,6 +13,8 @@ const Logout = () => {
     ).post('http://localhost:9000/api/logout'
     ).then( resp => {
       localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.removeItem("username");
       push('/login');
     }).catch(err => {
       console.log(err);
@@ -22,4 +24,3 @@ const Logout = () => {
   return(<div></div>);
 }
 
-export default Logout;
